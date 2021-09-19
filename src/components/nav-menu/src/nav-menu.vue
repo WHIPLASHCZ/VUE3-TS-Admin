@@ -1,179 +1,162 @@
 <template>
-    <div class="mav-menu">
-        <div class="logo">
-            <img src="@/assets/img/logo.png" class="img" alt="" />
-            <transition
-                class="animate__animated"
-                enter-active-class="animate__zoomIn animate__faster"
-                leave-active-class="animate__zoomOut animate__fasterer"
-            >
-                <div class="title" v-if="!isCollapse">Vue3 Admin</div>
-            </transition>
-        </div>
-        <el-menu
-            :uniqueOpened="true"
-            :default-active="defaultActive"
-            class="el-menu-vertical-demo"
-            background-color="#001a38"
-            text-color="#d6d6d6"
-            active-text-color="#ffd04b"
-            :collapse="isCollapse"
-            :router="true"
-            :show-timeout="timeout"
-            :hide-timeout="timeout"
-            ref="menuRef"
-        >
-            <el-sub-menu
-                v-for="(i, index) of menuList"
-                :index="i.url"
-                :key="i.id"
-                :ref="i.url"
-            >
-                <template #title>
-                    <i :class="i.icon"></i>
-                    <span>{{ i.name }}</span>
-                </template>
-                <template v-for="(j, indey) of i.children" :key="j.id">
-                    <!-- <template v-if="haveChild(j)">
-                            <el-sub-menu
-                                :index="j.url"
-                                @click="menuClickHandler(j.url)"
-                                class="sub-menu"
-                                :key="j.id"
-                            >
-                                <template #title>{{ j.name }}</template>
-                                <el-menu-item
-                                    class="menu-item"
-                                    v-for="(z, indez) of j.children"
-                                    :key="z.id"
-                                    >{{ z.name }}</el-menu-item
-                                >
-                            </el-sub-menu>
-                        </template> -->
-                    <!-- <template v-else> -->
-                    <el-menu-item
-                        class="menu-item"
-                        :class="{ current: $route.path == j.url }"
-                        :index="j.url"
-                        @click="menuClickHandler(j.url)"
-                    >
-                        {{ j.name }}
-                    </el-menu-item>
-                </template>
-            </el-sub-menu>
-        </el-menu>
+  <div class="mav-menu">
+    <div class="logo">
+      <img src="@/assets/img/logo.png" class="img" alt="" />
+      <transition
+        class="animate__animated"
+        enter-active-class="animate__zoomIn animate__faster"
+        leave-active-class="animate__zoomOut animate__fasterer"
+      >
+        <div class="title" v-if="!isCollapse">Vue3 Admin</div>
+      </transition>
     </div>
+    <el-menu
+      :uniqueOpened="true"
+      :default-active="defaultActive"
+      class="el-menu-vertical-demo"
+      background-color="#001a38"
+      text-color="#d6d6d6"
+      active-text-color="#ffd04b"
+      :collapse="isCollapse"
+      :router="true"
+      :show-timeout="timeout"
+      :hide-timeout="timeout"
+      ref="menuRef"
+    >
+      <el-sub-menu
+        v-for="(i, index) of menuList"
+        :index="i.url"
+        :key="i.id"
+        :ref="i.url"
+      >
+        <template #title>
+          <i :class="i.icon"></i>
+          <span>{{ i.name }}</span>
+        </template>
+        <template v-for="(j, indey) of i.children" :key="j.id">
+          <el-menu-item
+            class="menu-item"
+            :class="{ current: $route.path == j.url }"
+            :index="j.url"
+            @click="menuClickHandler(j.url)"
+          >
+            {{ j.name }}
+          </el-menu-item>
+        </template>
+      </el-sub-menu>
+    </el-menu>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, onMounted } from "@vue/runtime-core";
 import {
-    ref,
-    reactive,
-    computed,
-    inject,
-    getCurrentInstance,
-    watch
+  ref,
+  reactive,
+  computed,
+  inject,
+  getCurrentInstance,
+  watch
 } from "vue";
 import { useStore } from "vuex";
 import { myUseStore } from "@/store/index";
 import { useRoute, useRouter } from "vue-router";
 import { ElMenu } from "element-plus";
+import charts from "@/baseUI/myChart/hooks/useEchart";
 export default defineComponent({
-    name: "navMenu",
-    props: {
-        isCollapse: {
-            type: Boolean,
-            default: false
-        }
-    },
-    setup(props) {
-        let $router = useRouter();
-        let $route = useRoute();
-        let $store = myUseStore();
-        let menuList = computed(() => $store.state.loginX.userMenus);
-        let defaultActive = computed(() => $route.path);
-        let menuRef = ref<InstanceType<typeof ElMenu>>();
-        let timeout = ref(200);
-        let event = document.createEvent("HTMLEvents");
-        let haveChild = computed(() => (i: any) =>
-            i.children && i.children.length
-        );
-        function menuClickHandler(url: string) {
-            $router.push(url ?? "/notFound");
-        }
-        let timer: any;
-        watch(
-            () => props.isCollapse,
-            () => {
-                if (timer) clearTimeout(timer);
-                timer = setTimeout(() => {
-                    event.initEvent("resize", true, true);
-                    window.dispatchEvent(event);
-                }, timeout.value + 90);
-            }
-        );
-        return {
-            // isCollapse,
-            menuList,
-            haveChild,
-            menuClickHandler,
-            defaultActive,
-            menuRef,
-            timeout
-        };
+  name: "navMenu",
+  props: {
+    isCollapse: {
+      type: Boolean,
+      default: false
     }
+  },
+  setup(props) {
+    let $router = useRouter();
+    let $route = useRoute();
+    let $store = myUseStore();
+    let menuList = computed(() => $store.state.loginX.userMenus);
+    let defaultActive = computed(() => $route.path);
+    let menuRef = ref<InstanceType<typeof ElMenu>>();
+    let timeout = ref(200);
+    let event = document.createEvent("HTMLEvents");
+    let haveChild = computed(() => (i: any) => i.children && i.children.length);
+    function menuClickHandler(url: string) {
+      $router.push(url ?? "/notFound");
+    }
+    let timer: any;
+
+    watch(
+      () => props.isCollapse,
+      () => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          (window as any).chartsArr.forEach((chart: any) => {
+            chart.resize();
+          });
+        }, timeout.value + 90);
+      }
+    );
+    return {
+      menuList,
+      haveChild,
+      menuClickHandler,
+      defaultActive,
+      menuRef,
+      timeout
+    };
+  }
 });
 </script>
 
 <style scoped lang="less">
 @media screen and (max-width: 1400px) {
-    .title {
-        font-size: 16px !important;
-    }
-    .img {
-        width: 30px !important;
-    }
+  .title {
+    font-size: 16px !important;
+  }
+  .img {
+    width: 30px !important;
+  }
 }
 .current {
-    // background-color: rgb(0, 1, 36) !important;
-    color: #ffffff !important;
+  // background-color: rgb(0, 1, 36) !important;
+  color: #ffffff !important;
 }
 
 .sub-menu:hover {
-    .current();
+  .current();
 }
 
 .menu-item:hover {
-    .current();
+  .current();
 }
 .animate__fasterer {
-    animation-duration: 200ms;
+  animation-duration: 200ms;
 }
 .el-menu-vertical-demo {
-    background-color: #064b75;
-    color: rgb(202, 202, 202) !important;
-    border: none;
-    user-select: none;
+  background-color: #064b75;
+  color: rgb(202, 202, 202) !important;
+  border: none;
+  user-select: none;
 }
 .img {
-    width: 35px;
-    margin-right: 5px;
+  width: 35px;
+  margin-right: 5px;
 }
 
 .mr12 {
-    margin-right: 12px;
+  margin-right: 12px;
 }
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
 }
 .title {
-    font-weight: 600;
-    font-size: 18px;
-    padding-top: 7px;
-    line-height: 0px;
+  font-weight: 600;
+  font-size: 18px;
+  padding-top: 7px;
+  line-height: 0px;
 }
 </style>
