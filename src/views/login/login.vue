@@ -32,10 +32,6 @@ export default defineComponent({
         notify.close();
       }
     );
-
-    onUnmounted(() => {
-      notify.close();
-    });
   },
   components: {
     loginWindow
