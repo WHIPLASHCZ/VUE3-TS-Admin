@@ -65,10 +65,6 @@ export const technologyStacks = [
   },
 
   {
-    title: "提交规范",
-    desp: "Commitizen + Commitlint"
-  },
-  {
     title: "部署",
     desp: "Nginx"
   }

@@ -9,22 +9,15 @@ export const devDependencies: DescriptionProp[] = [
     description: '5'
   },
   {
-    name: 'vite',
-    description: '^2.2.3'
+    name: 'VUE-CLI',
+    description: '^4.5.0'
   },
 
-  {
-    name: 'eslint',
-    description: '^7.25.0'
-  },
   {
     name: 'prettier',
     description: '^2.2.1'
   },
-  {
-    name: 'stylelint',
-    description: '^13.13.0'
-  },
+
   {
     name: 'husky',
     description: '^6.0.0'
@@ -49,14 +42,7 @@ export const devDependencies: DescriptionProp[] = [
     name: '@types/node',
     description: '^14.14.41'
   },
-  {
-    name: '@typescript-eslint/eslint-plugin',
-    description: '^4.22.0'
-  },
-  {
-    name: '@typescript-eslint/parser',
-    description: '^4.22.0'
-  },
+
   {
     name: '@vitejs/plugin-vue',
     description: '^1.2.2'
@@ -65,34 +51,24 @@ export const devDependencies: DescriptionProp[] = [
     name: '@vue/compiler-sfc',
     description: '^3.0.5'
   },
+
   {
-    name: 'commitizen',
-    description: '^4.2.3'
+    name:  "@vue/cli-plugin-babel",
+    description:"~4.5.0",
+  },
+  {
+    name:"@vue/cli-plugin-typescript",
+    description:"~4.5.0",
+  },
+  {
+    name:"@vue/cli-service",
+    description:"~4.5.0",
   },
   {
     name: 'cz-conventional-changelog',
     description: '3.3.0'
   },
-  {
-    name: 'eslint-config-airbnb-base',
-    description: '^14.2.1'
-  },
-  {
-    name: 'eslint-config-prettier',
-    description: '^8.3.0'
-  },
-  {
-    name: 'eslint-plugin-import',
-    description: '^2.22.1'
-  },
-  {
-    name: 'eslint-plugin-prettier',
-    description: '^3.4.0'
-  },
-  {
-    name: 'eslint-plugin-vue',
-    description: '^7.9.0'
-  },
+
   {
     name: 'stylelint-config-prettier',
     description: '^8.0.2'
@@ -105,10 +81,7 @@ export const devDependencies: DescriptionProp[] = [
     name: 'stylelint-order',
     description: '^4.1.0'
   },
-  {
-    name: 'vite-plugin-mock',
-    description: '^2.5.0'
-  },
+
   {
     name: 'vue-tsc',
     description: '^0.0.8'
