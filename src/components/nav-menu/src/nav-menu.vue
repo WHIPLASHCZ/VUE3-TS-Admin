@@ -96,7 +96,10 @@ export default defineComponent({
       () => {
         if (timer) clearTimeout(timer);
         timer = setTimeout(() => {
-          if ((window as any).chartsArr) {
+          if (
+            (window as any).chartsArr &&
+            $route.path == "/main/analysis/dashboard"
+          ) {
             (window as any).chartsArr.forEach((chart: any) => {
               chart.resize();
             });
