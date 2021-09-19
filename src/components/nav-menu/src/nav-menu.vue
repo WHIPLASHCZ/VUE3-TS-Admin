@@ -1,7 +1,12 @@
 <template>
   <div class="mav-menu">
     <div class="logo">
-      <img src="@/assets/img/logo.png" class="img" alt="" />
+      <img
+        src="@/assets/img/logo.png"
+        class="img"
+        alt=""
+        :class="{ lft16: isCollapse }"
+      />
       <transition
         class="animate__animated"
         enter-active-class="animate__zoomIn animate__faster"
@@ -91,9 +96,11 @@ export default defineComponent({
       () => {
         if (timer) clearTimeout(timer);
         timer = setTimeout(() => {
-          (window as any).chartsArr.forEach((chart: any) => {
-            chart.resize();
-          });
+          if ((window as any).chartsArr) {
+            (window as any).chartsArr.forEach((chart: any) => {
+              chart.resize();
+            });
+          }
         }, timeout.value + 90);
       }
     );
@@ -110,14 +117,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-@media screen and (max-width: 1400px) {
-  .title {
-    font-size: 16px !important;
-  }
-  .img {
-    width: 30px !important;
-  }
-}
 .current {
   // background-color: rgb(0, 1, 36) !important;
   color: #ffffff !important;
@@ -140,8 +139,14 @@ export default defineComponent({
   user-select: none;
 }
 .img {
-  width: 35px;
-  margin-right: 5px;
+  width: 30px;
+  position: absolute;
+  left: 27px;
+  transition: all 0.3s ease;
+}
+
+.lft16 {
+  left: 16px;
 }
 
 .mr12 {
@@ -152,11 +157,13 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   height: 80px;
+  position: relative;
 }
 .title {
   font-weight: 600;
   font-size: 18px;
-  padding-top: 7px;
+  padding-top: 3px;
   line-height: 0px;
+  margin-left: 25px;
 }
 </style>

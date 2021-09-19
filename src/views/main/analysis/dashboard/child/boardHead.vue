@@ -10,9 +10,6 @@
         ></StatisticsCard>
       </div>
     </el-col>
-    <!-- <el-col :xs="12" :sm="12" :md="6"> <myCard></myCard></el-col>
-        <el-col :xs="12" :sm="12" :md="6"> <myCard></myCard></el-col>
-        <el-col :xs="12" :sm="12" :md="6"> <myCard></myCard></el-col> -->
   </el-row>
 </template>
 

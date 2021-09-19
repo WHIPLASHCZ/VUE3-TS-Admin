@@ -27,8 +27,8 @@ export const devDependencies: DescriptionProp[] = [
     description: '^10.5.4'
   },
   {
-    name: 'rimraf',
-    description: '^3.0.2'
+    name: 'animate.css',
+    description: '^4.1.1'
   },
   {
     name: '@commitlint/cli',

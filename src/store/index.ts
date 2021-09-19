@@ -39,14 +39,11 @@ const store = createStore({
       },
       setLimits(state,limits){
         state.entireLimits = limits;
-        // console.log(state.entireLimits);
-
       }
     },
 
     actions:{
       async getInitalData({commit},state){
-        console.log('getInitalData');
         let department = await getPageListData('/department/list',{offset:0,size:1000});
         let role = await getPageListData('/role/list',{offset:0,size:1000});
         let limitsResult =  await getPageListData('menu/list');

@@ -1,7 +1,7 @@
 <template>
-    <div class="bar-chart">
-        <EChart :option="option2" ref="chartRef"></EChart>
-    </div>
+  <div class="bar-chart">
+    <EChart :option="option2" ref="chartRef"></EChart>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -190,7 +190,7 @@ let option2 = computed(()=>({
         "data": props.values,
         "type": "bar",
         "barMaxWidth": "auto",
-        "barWidth": 50,
+        "barWidth": 30,
         "itemStyle": {
             "color": {
                 "x": 0,

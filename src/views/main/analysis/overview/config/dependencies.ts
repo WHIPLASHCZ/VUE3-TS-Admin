@@ -31,8 +31,8 @@ export const dependencies: DescriptionProp[] = [
     description: '^4.1.1'
   },
   {
-    name: 'scss',
-    description: '^0.2.4'
+    name: 'animate.css',
+    description: '^4.1.1'
   },
   {
     name: 'EChart',
