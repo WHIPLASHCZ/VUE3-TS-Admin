@@ -1,7 +1,7 @@
 <template>
-    <div class="map-chart">
-        <EChart :option="option"></EChart>
-    </div>
+  <div class="map-chart">
+    <EChart :option="option" chartId="map"></EChart>
+  </div>
 </template>
 
 <script setup lang="ts">

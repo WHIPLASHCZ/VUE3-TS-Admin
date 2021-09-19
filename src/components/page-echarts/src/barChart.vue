@@ -1,6 +1,6 @@
 <template>
   <div class="bar-chart">
-    <EChart :option="option2" ref="chartRef"></EChart>
+    <EChart :option="option2" ref="chartRef" chartId="bar"></EChart>
   </div>
 </template>
 
@@ -222,24 +222,6 @@ let option2 = computed(()=>({
         "show": true
     }
 }));
-
-
-// var zoomSize = 6;
-// onMounted(()=>{
-//   nextTick(()=>{
-//       console.log(chartRef.value.chart.chart);
-
-//       chartRef.value.$refs.chartRef.onclick =  function (params:any=6) {
-//     console.log(props.labels[Math.max(params.dataIndex - zoomSize / 2, 0)]);
-//        chartRef.value.chart.chart.dispatchAction({
-//         type: 'dataZoom',
-//         startValue: props.labels[Math.max(params.dataIndex - zoomSize / 2, 0)],
-//         endValue:props.labels[Math.min(params.dataIndex + zoomSize / 2, props.values.length - 1)]
-//     });
-//     };
-//   });
-
-// })
 </script>
 
 <style></style>

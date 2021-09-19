@@ -1,7 +1,7 @@
 <template>
-    <div class="line-chart">
-        <EChart :option="option"></EChart>
-    </div>
+  <div class="line-chart">
+    <EChart :option="option" chartId="line"></EChart>
+  </div>
 </template>
 
 <script setup lang="ts">

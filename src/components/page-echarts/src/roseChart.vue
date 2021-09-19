@@ -1,7 +1,7 @@
 <template>
-    <div class="pie-chart">
-        <EChart :option="btOption"></EChart>
-    </div>
+  <div class="pie-chart">
+    <EChart :option="btOption" chartId="rose"></EChart>
+  </div>
 </template>
 
 <script setup lang="ts">

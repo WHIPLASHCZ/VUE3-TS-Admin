@@ -1,4 +1,5 @@
 module.exports = {
+  // productionSourceMap: false,
     configureWebpack: {
         //configureWebpack内的设置会被合并到webpack.config.js
         resolve: {
@@ -9,6 +10,7 @@ module.exports = {
                 network: "@/network",
                 global: "@/global"
             }
-        }
+        },
+
     }
 };

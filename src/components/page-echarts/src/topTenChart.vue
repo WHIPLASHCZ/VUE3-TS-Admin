@@ -1,7 +1,12 @@
 <template>
-    <div class="bar-chart">
-        <EChart :option="option" ref="chartRef" height="550px"></EChart>
-    </div>
+  <div class="bar-chart">
+    <EChart
+      :option="option"
+      ref="chartRef"
+      height="550px"
+      chartId="topTen"
+    ></EChart>
+  </div>
 </template>
 
 <script setup lang="ts">

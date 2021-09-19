@@ -61,7 +61,8 @@ import {
   computed,
   inject,
   getCurrentInstance,
-  watch
+  watch,
+  onUnmounted
 } from "vue";
 import { useStore } from "vuex";
 import { myUseStore } from "@/store/index";
